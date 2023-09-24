@@ -13,6 +13,8 @@
 #include <fcntl.h>
 #include <errno.h>
 
+char *find_executable(const char *command);
+
 void my_printer(const char *str);
 void afficher_prompt(void);
 void lire_commande(char *command, size_t size);

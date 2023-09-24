@@ -12,7 +12,21 @@ void run_commande(const char *command){
     }
     else if (pid == 0)
     {
-        execlp(command, command, (char *)NULL);
+        char *args[100];
+        int i = 0;
+        /*char copy_command[1024];*/
+
+        /*strncpy(copy_command, command, sizeof(copy_command));*/
+
+        char *token = strtok((char *)command, " ");
+
+        while (token != NULL)
+        {
+            args[i++] = token;
+            token = strtok(NULL, " ");
+        }
+        args[i] = NULL;
+        execvp(args[0], args);
         perror("exec");
         exit(EXIT_FAILURE);
     }
